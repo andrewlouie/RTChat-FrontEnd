@@ -1,0 +1,490 @@
+html { overflow: -moz-scrollbars-none; }
+body {
+	background-color:black;
+	color:white;
+	height:100%;
+}
+a,a:visited {
+	color:white;
+}
+a:hover,a:active {
+	color:rgba(174,174,174,1.00);
+}
+.menu-btn {
+position: absolute;
+left: 15px;
+top: 15px;	
+border: 1px solid;
+border-radius: 5px;
+padding: 5px;
+width: 43px;
+height: 43px;
+z-index: 99;
+}
+.back-btn {
+position: absolute;
+left: 65px;
+top: 15px;	
+border: 1px solid;
+border-radius: 20px;
+padding: 2px 5px 0px 5px;
+width: 43px;
+height: 43px;
+z-index: 99;
+font-size: 28px;
+}
+#backlink {
+	display:none;
+}
+.menu-btn span {
+	display: block;
+	background-color:white;
+	width: 30px;
+	height: 4px;
+	margin: 5px 0;
+	border-radius: 5px;
+	z-index: 99;
+}
+.form-control {
+width: 100%;	
+text-align: center;
+margin-bottom: 5px;
+color:black;
+}
+label {
+display: block;
+width: 100%;
+text-align:center;
+}
+label[for=stayloggedin] {
+display:inline-block;
+width:auto;
+margin-right: 8px;	
+margin-top: 1px;
+}
+.cbrow {
+width: 100%;
+text-align:center;	
+}
+.loginform {
+width: 300px;
+height: auto;
+padding: 10px;	
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+}
+.profileform {
+width: 300px;
+height: auto;
+padding: 10px;	
+position: absolute;
+left: 50%;
+transform: translate(-50%, 0%);
+}
+.loginform input[type=button],.profileform input[type=button] {
+margin: 10px;
+text-align:center;	
+width: 100px;
+}
+.buttonrow {
+	display:block;
+	width: 100%;
+	text-align:center;
+}
+#main,#main2 {
+  position: relative;	
+  height: 90vh;
+  width: 100%;
+}
+#tab1,#tab2,#tab3,#tab4 {
+display:none;
+position:relative;
+height:100%;
+width:100%;	
+	overflow-y:scroll;
+	
+}
+#tab1::-webkit-scrollbar,#tab2::-webkit-scrollbar,#tab3::-webkit-scrollbar,#tab4::-webkit-scrollbar,.actualtext::-webkit-scrollbar { 
+    display: none; 
+}
+#tab1,#tab2,#tab3,#tab4,.actualtext {
+-ms-overflow-style: -ms-autohiding-scrollbar;	
+}
+
+#statusmsg {
+bottom: 0;
+min-height: 46px;
+max-height: 46px;
+white-space:nowrap;
+padding: 10px;
+border-top: 1px solid white;
+font-size: 18px;
+width: 100%;	
+position: absolute;
+background-color:black;	
+z-index:99;
+overflow:hidden;
+}
+.error {
+color:red;	
+display:block;
+text-align:center;
+}
+h2 {
+	text-align:center;
+}
+#spinny {
+position:fixed;
+width: 100%;
+height: 100%;
+background-color: black;
+z-index:98;
+display:none;
+}
+#spinny img {
+width: 80px;
+height: auto;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);	
+}
+#search,#chats {
+width: 600px;
+max-width: 95%;
+height: 100%;
+padding: 10px;	
+position: absolute;
+left: 50%;
+top: 2%;
+transform: translate(-50%, -2%);
+}
+#chats {
+margin-top: 65px;	
+}
+.result,.chatobj,.inviteobj {
+cursor:pointer;
+width: 95%;
+height: 60px;
+position: relative;
+margin-top: 3px;
+border: 1px solid transparent;
+}
+
+.result:hover,.chatobj:hover,.inviteobj:hover {
+border: 1px solid white;
+}
+.result img,.chatobj img,.inviteobj img {
+width: 100%;
+height: auto;
+}
+.imgcont {
+width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;	
+	background-color:white;
+	float:left;
+}
+.profimgcont {
+width: 200px;	
+height: 200px;
+    border-radius: 50%;	
+	position:relative;
+	overflow:hidden;
+	max-width: 100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+.profimgcont img {
+width: 100%;
+height: auto;	
+}
+.name{
+	overflow:hidden;
+	width: 65%;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	position: absolute;
+  top: 50%;
+  height: 3em;
+  margin-top: -1.5em;
+margin-left: 10px;
+float:left;
+}
+#results {
+	max-height: 82vh;
+	overflow-y:scroll;
+}
+#friends,#chats {
+	max-height: 79vh;
+overflow-y:scroll;
+}
+#friends::-webkit-scrollbar,#results::-webkit-scrollbar,#chats::-webkit-scrollbar { 
+    display: none; 
+}
+#profilecover,#profcover {
+position: absolute;
+background-color: black;
+width: 100%;
+height: 100%;
+z-index: 2;
+display:none;
+}
+#changepwform,#blockedusers {
+	display:none;
+}
+.friimgcont {
+display: block;	
+text-align:center;
+width: 100%;
+position:relative;
+top: 0;
+width: 100%;
+height:auto;
+    margin-bottom: 6px;
+}
+.fricircle {
+    position: relative;
+	margin:auto;
+    overflow: hidden;
+    border-radius: 50%;	
+	background-color:white;	
+}
+.fricircle img {
+width: 100%;
+height: auto;	
+}
+.friendobj {
+position:relative;
+margin-top: 10px;
+border: 1px solid transparent;
+}
+.friname {
+display: block;	
+text-align:center;
+font-size: 14px;
+width: 100%;
+overflow:hidden;
+position:relative;
+bottom:0;
+margin:auto;
+}
+#friends {
+width: 95%;
+height: 100%;
+margin-top: 65px;
+position: absolute;	
+}
+.staticrow {
+width: 100%;
+height: 65px;
+position: fixed;
+display:block;
+z-index: 1;
+background-color: black;
+}
+#friendsearchbox {
+width: 200px;	
+margin-left: 110px;
+margin-top: 15px;	
+}
+#searchbox {
+    margin-left: 100px;
+    margin-top: 7px;	
+	width:500px;
+	max-width: 65%;
+}
+.friendobj:hover {
+	cursor:pointer;
+	border:1px solid white;
+}
+.topbuttons {
+margin-top: 15px;
+float:right;
+margin-right: 10px;
+height: 50px;
+width: auto;	
+}
+#chatbar {
+display:none;	
+}
+@media screen and (max-width: 390px) {
+	.topbuttons {
+	height: 35px;
+	width: auto;	
+	margin-right: 5px;
+	}
+}
+.empty {
+font-size: 24px;
+font-style: italic;
+text-align:center;
+display:block;
+}
+#declineaccept {
+margin-top:70px;
+position:absolute;
+width: 100%;	
+height: 100%;
+background-color:black;
+text-align:center;
+font-size: 18px;
+display:none;
+z-index:1;
+}
+#invitedusers {
+margin-top:70px;
+position:absolute;
+width: 100%;	
+height: 100%;
+background-color:black;
+text-align:center;
+font-size: 18px;
+display:none;
+z-index: 1;
+}
+.clearable{
+  background: #fff url(../include/mJotv.gif) no-repeat right -10px center;
+  border: 1px solid #999;
+  padding: 3px 18px 3px 4px;     /* Use the same right padding (18) in jQ! */
+  border-radius: 3px;
+  transition: background 0.4s;
+}
+.clearable.x  { background-position: right 5px center; } /* (jQ) Show icon */
+.clearable.onX{ cursor: pointer; }              /* (jQ) hover cursor style */
+.clearable::-ms-clear {display: none; width:0; height:0;} /* Remove IE default X */
+.onechat {
+	  border: 1px solid white;
+    height: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.textareacont {
+height: 45%;	
+}
+.mychat {
+border: 1px solid #00a8cb;
+background-color:black;
+height: 100%;
+width: 100%;
+padding: 10px;
+font-size: 16px;
+border-radius:5px;
+}
+#indchat {
+    margin-top: 70px;
+    background-color: black;
+    position: absolute;
+    width: 100%;
+    height: 86%;
+    z-index: 1;	
+	display:none;
+}
+.achat {
+height: 100%;	
+}
+.nametab {
+	position: absolute;
+    background-color: #00a8cb;
+    color: white;
+    top: 0px;
+    right: 15px;
+    border: solid 1px white;
+    border-radius: 0px 5px 0px 5px;
+    text-align: right;
+    padding-right: 5px;
+    padding-left: 5px;
+    cursor: pointer;
+    z-index: 1;
+	opacity: 0.5;
+}
+.actualtext {
+overflow: scroll;
+    word-wrap: break-word;
+    height: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    position: relative;	
+}
+.myrow {
+	height: 45%;
+	margin-top:10px;
+}
+.mycol {
+	height: 100%;
+	transform: translateX(0);
+}
+.userbuttons img {
+    width: 100%;
+    height: auto;
+}
+.userbuttons .imgcont {
+height: 50px;
+width: 50px;
+display:inline-block;
+	margin-top:10px;
+	margin-left: 5px;
+}
+.userbuttons .span {
+	display:inline-block;
+}
+.userbuttons {
+	float:right;
+    margin-right: 10px;
+}
+@media screen and (max-width: 666px) {
+.tab3 .staticrow {
+height: 130px;	
+}
+.userbuttons {
+    float: none;
+    margin-left: auto;
+    margin-top: 65px;
+    margin-right: auto;
+	width: auto;
+    display: table;
+}
+#indchat {
+margin-top:130px;	
+height: 73%;
+}
+#chats {
+	z-index: 1;
+}
+}
+.blockeduser {
+height: 60px;	
+line-height: 60px;
+}
+.unblock {
+	float:right;
+}
+.hiddenfile {
+ width: 0px;
+ height: 0px;
+ overflow: hidden;
+}
+#left,#right {
+	width: 40px
+}
+.newdot {
+    padding: 0px !important;
+    color: orange !important;
+	float:right;	
+}
+.sidr ul li span {
+display:inline-block;	
+}
+.back-btn .newdot {
+    position: absolute;
+    top: 15px;
+    right: 1px;	
+}
+.userbuttons .newdot {
+position: relative;
+}

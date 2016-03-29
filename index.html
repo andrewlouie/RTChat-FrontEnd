@@ -1,0 +1,77 @@
+﻿<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="title" content="RT Chat">
+	<meta name="description" content="Real Time Chat">
+    <meta name="keywords" content="RTChat, Real-Time, Chat, typing, gab, text, icq">
+	<meta name="author" content="Andrew Aaron">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>RTChat</title>
+<!-- Bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="js/stylesheets/jquery.sidr.dark.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+        <script>
+		var url = "http://localhost:8080/";
+		var errors = ["","Session invalid.  Please log in again.","You can't chat with yourself", "Sorry, something went wrong", "Chat not found", "You are not in that chat", "User not found", "Invalid password", "Username is currently in use", "Username is already in use", "You must be in a chat to invite others", "That user is already in the chat", "Unable to invite user", "You are already in the chat", "You must be be invited to join this chat", "Must be a registered user to block other users", "No info on guest users", "Must be a registered user to change password", "Old password does not match", "Password is not valid.  Must be between 8 and 20 characters and contain at least one digit.", "Must be a registered user to change profile", "You must be registered to add friends", "Username is not valid", "Email address is not valid", "Name is not valid","Can't add guest users as friends","You are already friends","You can't add yourself as a friend","Can't unfriend yourself","You are not friends with this user","That user has already been invited","You are not blocking that user","You are already blocking that user","There was a problem with the image file", "File is too large","Missing Info on request","Username is already in use","You can't block yourself"];
+		var backtab1 = false;
+		var backtab2 = false;
+		var backtab3 = false;
+		var backtab4 = false;
+		var inchat = false;
+		var userArrayNames = [];
+		var userArrayIds = [];
+		var userArrayPics = [];
+		var showing = 0;
+		var newmessages = {};
+		var getandsend;
+		</script>
+</head>
+<script src="js/jquery-2.2.1.min.js"></script>
+<script src="js/jquery.sidr.js"></script>
+<body>
+    <div id="sidr" style="display:none"> 
+<ul>
+ <li class="active hidelog"><a href="#" onClick="return navigate(1)">Login</a></li>
+           <li class="hidesel" id="li2"><a href="#" onClick="return navigate(2)">Search Users</a></li>
+           <li class="hidesel noguest" id="li3"><a href="#" onClick="return navigate(3,false)">My Friends</a></li>
+           <li class="hidesel" id="li4"><a href="#" onClick="return navigate(4)">My Chats <span class="newdot" id="menudot" style="display:none">●</span></a></li>
+           <li class="hidesel noguest" id="li5"><a href="#" onClick="return navigate(5)">My Profile</a></li>
+           <li class="hidesel" id="li6"><a href="#" onClick="return navigate(6)">Logout</a></li>
+</ul>
+</div>
+<script>
+//initialize side menu
+$(function () {
+	$('#menu-btn').sidr();
+	$('#sidr').show();
+});
+</script>
+     <div class="menu-btn" id="menu-btn"><a id="demo" href="#sidr">
+	<div></div>
+	<span></span>
+	<span></span>
+	<span></span>
+</a></div>
+<a href="#" id="backlink"><div class="back-btn"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span><span class="newdot" style="display:none">●</span></div></a>
+<div id="spinny">
+<img src="include/loading.gif">
+</div> 
+<div id="main">
+</div>
+<div id="statusmsg">
+Login to continue
+</div>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/myscript.js"></script>
+</body>
+</html>
