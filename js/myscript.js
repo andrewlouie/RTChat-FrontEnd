@@ -57,7 +57,7 @@ $(function() {
 							$('#mptagline').val(profile.TagLine);
 							$('#mpemail').val(profile.Email);
 							$('#mpusername').val(profile.Username);
-							if (profile.ProfilePic != null) $('#profpic').attr('src',"data:image;base64," + profile.ProfilePic);
+							if (profile.ProfilePic != null && typeof profile.ProfilePic != 'undefined') $('#profpic').attr('src',"data:image;base64," + profile.ProfilePic);
 							$('#mpautoaccept').prop('checked',profile.AutoJoinChats);
 							navigate(3,true);
 							$('#menudot').hide();
@@ -139,7 +139,7 @@ $(function() {
 							$('#mptagline').val(profile.TagLine);
 							$('#mpemail').val(profile.Email);
 							$('#mpusername').val(profile.Username);
-							if (profile.ProfilePic != null) $('#profpic').attr('src',"data:image;base64," + profile.ProfilePic);
+							if (profile.ProfilePic != null && typeof profile.ProfilePic != 'undefined') $('#profpic').attr('src',"data:image;base64," + profile.ProfilePic);
 							$('#mpautoaccept').prop('checked',profile.AutoJoinChats);
 							$('#menudot').hide();
 							navigate(3,true);
@@ -250,7 +250,7 @@ $(function() {
 							$('#mptagline').val(profile.TagLine);
 							$('#mpemail').val(profile.Email);
 							$('#mpusername').val(profile.Username);
-							if (profile.ProfilePic != null) $('#profpic').attr('src',"data:image;base64," + profile.ProfilePic);
+							if (profile.ProfilePic != null && typeof profile.ProfilePic != 'undefined') $('#profpic').attr('src',"data:image;base64," + profile.ProfilePic);
 							$('#mpautoaccept').prop('checked',profile.AutoJoinChats);
 							navigate(2);
 							$('#menudot').hide();
@@ -343,7 +343,7 @@ $(function() {
 					var results = data.Results;
 					for (i=0;i<results.length;i++) {
 						$('#results').append(
-						'<div class="result" data="' + results[i]._id + '"><div class="imgcont"><img src="' + (results[i].ProfilePic == null ? 'include/placeholder.png' : 'data:image;base64,' + results[i].ProfilePic) + '"></div><span class="name">' + results[i].UserName + '<br>' + results[i].Name + '</span></div>');
+						'<div class="result" data="' + results[i]._id + '"><div class="imgcont"><img src="' + (results[i].ProfilePic == null || typeof results[i].ProfilePic == 'undefined' ? 'include/placeholder.png' : 'data:image;base64,' + results[i].ProfilePic) + '"></div><span class="name">' + results[i].UserName + '<br>' + results[i].Name + '</span></div>');
 					}
 				}
 			},
@@ -556,7 +556,7 @@ $(function() {
 						$('#friidnum').val(data.Friend._id);
 						$('#friprofusername').html(data.Friend.UserName);
 						$('#frionlinestatus').attr('fill',(data.Friend.OnlineStatus ? "green" : "red"));
-						if (data.Friend.ProfilePic != null) $('#profpictab2').attr('src',"data:image;base64," + data.Friend.ProfilePic);
+						if (data.Friend.ProfilePic != null && typeof data.Friend.ProfilePic != 'undefined') $('#profpictab2').attr('src',"data:image;base64," + data.Friend.ProfilePic);
 						else $('#profpictab1').attr('src','include/placeholder.png');
 						$('#backlink').show();
 						backtab2 = true;
@@ -957,7 +957,7 @@ function recdata(data) {
 
 function addFriend(friend,initial) {
 	$('#nofriends').hide();
-	var friendstring = '<div class="col-xs-4 col-md-3 col-lg-2 friendobj" id="friend' + friend._id + '" data="' + friend._id + '" data2="' + friend.UserName + '" data3="' + friend.Name + '"><div class="friimgcont"><div class="fricircle"><img src="' + (friend.ProfilePic == null ? 'include/placeholder.png' : "data:image;base64," + friend.ProfilePic) + '"></div></div><div class="friname"><span style="color:' + (friend.OnlineStatus ? 'green' : 'red') + '">●</span>' + friend.UserName + '</div></div>';
+	var friendstring = '<div class="col-xs-4 col-md-3 col-lg-2 friendobj" id="friend' + friend._id + '" data="' + friend._id + '" data2="' + friend.UserName + '" data3="' + friend.Name + '"><div class="friimgcont"><div class="fricircle"><img src="' + (friend.ProfilePic == null  || typeof friend.ProfilePic == 'undefined' ? 'include/placeholder.png' : "data:image;base64," + friend.ProfilePic) + '"></div></div><div class="friname"><span style="color:' + (friend.OnlineStatus ? 'green' : 'red') + '">●</span>' + friend.UserName + '</div></div>';
 
 	$('#friends').prepend(friendstring);
 	//size circles in friends page
@@ -1097,7 +1097,7 @@ function resultClick(id,un) {
 						$('#idnum').val(data.Friend._id);
 						$('#addfriend-btn').show();
 						$('#profusername').html(data.Friend.UserName);
-						if (data.Friend.ProfilePic != null) $('#profpictab1').attr('src',"data:image;base64," + data.Friend.ProfilePic);
+						if (data.Friend.ProfilePic != null && typeof data.Friend.ProfilePic != 'undefined') $('#profpictab1').attr('src',"data:image;base64," + data.Friend.ProfilePic);
 						else $('#profpictab1').attr('src','include/placeholder.png');
 						$('#onlinestatus').attr('fill',(data.Friend.OnlineStatus ? "green" : "red"));
 						$('#backlink').show();
@@ -1132,9 +1132,10 @@ function SendAndReceive() {
 					var updates = data2.Updates;
 					for (i=0;i<updates.length;i++){
 						if (updates[i].isChatUpdate) {
+							console.log("got a chat update");
 							processChat(updates[i].Chat,false);
 						}
-					else {
+						else {
 							if ($('#tab3').is(':hidden')) $('#menudot').show(); 
 							if ($('#c' + updates[i].ChatId).is(':hidden')) {
 								$('#chatobj' + updates[i].ChatId).find('.newdot').show();
@@ -1143,7 +1144,7 @@ function SendAndReceive() {
 							$mydiv = $("#c" + updates[i].ChatId + "u" + updates[i].FromUser).find('.actualtext');
 							var newmsg = $('<div/>').text(updates[i].Message).html();
 							$mydiv.html(newmsg.replaceAll("\r\n","<br>"));
-							if (typeof $mydiv !== 'undefined') $mydiv.scrollTop($mydiv[0].scrollHeight - $mydiv[0].clientHeight);
+							if (typeof $mydiv[0] !== 'undefined') $mydiv.scrollTop($mydiv[0].scrollHeight - $mydiv[0].clientHeight);
 							if ($('#c' + updates[i].ChatId + 'u' + updates[i].FromUser).is(':hidden')) $('#c' + updates[i].ChatId + 'u' + updates[i].FromUser).attr('dot',1);
 							updateDots();
 						}
@@ -1273,7 +1274,7 @@ function ArrayBufferToBase64(buffer) {
 		$('#nochats').hide();
 		var chatstring = '<div class="chatobj" id="chatobj' + chat._id + '" data="' + chat._id + '" data2="' + userstring + '" data3="' + invitestring + '"><div class="imgcont"><img src="';
 
-	chatstring += (usersInChat.length > 2 ? "include/group.png" : (pic == "" ? "include/invite.png" : (pic == null ? "include/placeholder.png" : "data:image;base64," + pic)));
+	chatstring += (usersInChat.length > 2 ? "include/group.png" : (pic == "" ? "include/invite.png" : (pic == null || typeof pic == 'undefined' ? "include/placeholder.png" : "data:image;base64," + pic)));
 
 	chatstring += '"></div><span class="name">' + userstring;
 		if (invitestring.length > 0) chatstring += '<br>Invited: ' + invitestring;
@@ -1289,7 +1290,7 @@ function ArrayBufferToBase64(buffer) {
 			if (usersInChat[i]._id != $.cookie("userId")) {
 				$("<div/>", {
 					"class": "onechat",
-					"picdata" : (usersInChat[i].ProfilePic == null ? 'include/placeholder.png' : "data:image;base64," + usersInChat[i].ProfilePic),
+					"picdata" : (usersInChat[i].ProfilePic == null  || typeof usersInChat[i].ProfilePic == 'undefined' ? 'include/placeholder.png' : "data:image;base64," + usersInChat[i].ProfilePic),
 					"id": 'c' + chat._id + 'u' + usersInChat[i]._id,
 					"dot": "0",
 					html: '<div class="nametab" data="' + usersInChat[i]._id + '">' + usersInChat[i].UserName + '</div><div class="actualtext"></div>'
@@ -1311,14 +1312,14 @@ function ArrayBufferToBase64(buffer) {
 		}
 		if ($('#activechatid').val() == chat._id) $('#invitedlist').html(invitestring.replaceAll(",","<br>"));
 		$('#chatobj' + chat._id).attr('data2',userstring).attr('data3',invitestring).children('.name').html(userstring + (invitestring.length > 0 ? '<br>Invited: ' + invitestring : ""));
-	$('#chatobj' + chat._id).children().children('img').attr('src',(usersInChat.length > 2 ? "include/group.png" : (pic == "" ? "include/invite.png" : "data:image;base64," + pic)));
+	$('#chatobj' + chat._id).children().children('img').attr('src',(usersInChat.length > 2 ? "include/group.png" : (pic == ""  || typeof pic == 'undefined' ? "include/invite.png" : "data:image;base64," + pic)));
 	//add div for anyone who is new to the chat
 		for (i=0;i<usersInChat.length;i++) {
 			if (usersInChat[i]._id != $.cookie("userId")) {
 				if (!$('#c' + chat._id + "u" + usersInChat[i]._id).length) {
 					$("<div/>", {
 						"class": "onechat",
-						"picdata" : (usersInChat[i].ProfilePic == null ? 'include/placeholder.png' : "data:image;base64," + usersInChat[i].ProfilePic),
+						"picdata" : (usersInChat[i].ProfilePic == null  || typeof usersInChat[i].ProfilePic == 'undefined' ? 'include/placeholder.png' : "data:image;base64," + usersInChat[i].ProfilePic),
 						"id": 'c' + chat._id + 'u' + usersInChat[i]._id,
 						"dot": "0",
 						html: '<div class="nametab" data="' + usersInChat[i]._id + '">' + usersInChat[i].UserName + '</div><div class="actualtext"></div>'
@@ -1354,7 +1355,7 @@ function reloadFriends() {
 				var friend = friends[i];
 				$('#nofriends').hide();
 				if (!$('#friend' + friend._id).length) {
-					var friendstring = '<div class="col-xs-4 col-md-3 col-lg-2 friendobj" id="friend' + friend._id + '" data="' + friend._id + '" data2="' + friend.UserName + '" data3="' + friend.Name + '"><div class="friimgcont"><div class="fricircle"><img src="' + (friend.ProfilePic == null ? 'include/placeholder.png' : "data:image;base64," + friend.ProfilePic) + '"></div></div><div class="friname"><span style="color:' + (friend.OnlineStatus ? 'green' : 'red') + '">●</span>' + friend.UserName + '</div></div>';
+					var friendstring = '<div class="col-xs-4 col-md-3 col-lg-2 friendobj" id="friend' + friend._id + '" data="' + friend._id + '" data2="' + friend.UserName + '" data3="' + friend.Name + '"><div class="friimgcont"><div class="fricircle"><img src="' + (friend.ProfilePic == null  || typeof friend.ProfilePic == 'undefined' ? 'include/placeholder.png' : "data:image;base64," + friend.ProfilePic) + '"></div></div><div class="friname"><span style="color:' + (friend.OnlineStatus ? 'green' : 'red') + '">●</span>' + friend.UserName + '</div></div>';
 					$('#friends').prepend(friendstring);
 					var cw = $('.fricircle').width();
 					$('.fricircle').css({'height':cw+'px'});
@@ -1365,7 +1366,7 @@ function reloadFriends() {
 					$fridiv.attr('data2',friend.UserName);
 					$fridiv.attr('data3',friend.Name);
 					$fridiv.find('.friname').html('<span style="color:' + (friend.OnlineStatus ? 'green' : 'red') + '">●</span>' + friend.UserName);
-					$fridiv.find('img').attr('src',(friend.ProfilePic == null ? 'include/placeholder.png' : "data:image;base64," + friend.ProfilePic));
+					$fridiv.find('img').attr('src',(friend.ProfilePic == null  || typeof friend.ProfilePic == 'undefined' ? 'include/placeholder.png' : "data:image;base64," + friend.ProfilePic));
 				}
 			}
 		}
